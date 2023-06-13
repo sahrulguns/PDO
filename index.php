@@ -26,18 +26,18 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
           </tr>
           <?php $no = 1;
           foreach ($mahasiswa as $row) : ?>
-               <tr>
-                    <td><?= $no++; ?></td>
-                    <td><?= $row['nrp']; ?></td>
-                    <td><?= $row['nama']; ?></td>
-                    <td><?= $row['email']; ?></td>
-                    <td><?= $row['jurusan']; ?></td>
-                    <td><?= $row['gambar']; ?></td>
-                    <td>
-                         <a href="">ubah</a>
-                         <a href="">hapus</a>
-                    </td>
-               </tr>
+          <tr>
+               <td><?= $no++; ?></td>
+               <td><?= $row['nrp']; ?></td>
+               <td><?= $row['nama']; ?></td>
+               <td><?= $row['email']; ?></td>
+               <td><?= $row['jurusan']; ?></td>
+               <td><?= $row['gambar']; ?></td>
+               <td>
+                    <a href="">ubah</a>
+                    <a href="hapus.php?id=<?= $row['id']; ?>">hapus</a>
+               </td>
+          </tr>
           <?php endforeach;  ?>
      </table>
 </body>

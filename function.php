@@ -32,3 +32,13 @@ function tambah($data)
      // kembalikan nilai
      return mysqli_affected_rows($conn);
 }
+
+function hapus($id)
+{
+     var_dump($id);
+     global $conn;
+
+     mysqli_query($conn, "DELETE FROM mahasiswa WHERE id='$id'");
+
+     return mysqli_affected_rows($conn);
+}

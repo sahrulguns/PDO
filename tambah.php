@@ -1,18 +1,7 @@
 <?php
 require_once 'function.php';
 
-// if (isset($_POST['submit'])) {
-//      if (tambah($_POST) > 0) {
-//           echo "
-//                <script>
-//                alert('data berhasil ditambahkan!');
-//                     document.location.href='index.php';
-//                </script>
-//           ";
-//      } else {
-//           echo "Data gagal!";
-//      }
-// }
+
 
 if (isset($_POST['submit'])) {
      if (tambah($_POST) > 0) {
