@@ -19,11 +19,11 @@ function tambah($data)
 {
      global $conn;
      // mengambil data dari setiap inputan
-     $nrp = $_POST["nrp"];
-     $nama = $_POST["nama"];
-     $email = $_POST["email"];
-     $jurusan = $_POST["jurusan"];
-     $gambar = $_POST["gambar"];
+     $nrp = $data["nrp"];
+     $nama = $data["nama"];
+     $email = $data["email"];
+     $jurusan = $data["jurusan"];
+     $gambar = $data["gambar"];
 
      // query insert data
      $query = "INSERT INTO mahasiswa VALUES('', '$nrp', '$nama', '$email', '$jurusan', '$gambar')";
@@ -40,5 +40,30 @@ function hapus($id)
 
      mysqli_query($conn, "DELETE FROM mahasiswa WHERE id='$id'");
 
+     return mysqli_affected_rows($conn);
+}
+
+function ubah($data)
+{
+     global $conn;
+
+     $nrp = htmlspecialchars($data['nrp']);
+     $nama = htmlspecialchars($data['nama']);
+     $jurusan = htmlspecialchars($data['jurusan']);
+     $gambar = htmlspecialchars($data['gambar']);
+     $email = htmlspecialchars($data['email']);
+     $id = $data['id'];
+
+     $query = "UPDATE mahasiswa SET
+               nrp = '$nrp',
+               nama = '$nama',
+               email = '$email',
+               jurusan = '$jurusan',
+               gambar = '$gambar'
+               WHERE id=$id
+          ";
+     mysqli_query($conn, $query);
+
+     // kembalikan nilai
      return mysqli_affected_rows($conn);
 }
