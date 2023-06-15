@@ -2,23 +2,26 @@
 require_once 'function.php';
 
 if (isset($_POST['submit'])) {
-     if (tambah($_POST) > 0) {
+     if (ubah($_POST) >= 0) {
           echo "
                <script>
-                    alert('data berhasil ditambahkan!');
+                    alert('berhasil!');
                     document.location.href='index.php';
                </script>
           ";
      } else {
           echo "
           <script>
-               alert('data gagal ditambahkan!');
-
+               alert('gagal!');
+               
           </script>
-          
-          " . mysqli_error($conn);
+     " . mysqli_error($conn);
      }
 }
+$id = $_GET['id'];
+$mhs = query("SELECT * FROM mahasiswa WHERE id='$id'")[0];
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,29 +35,33 @@ if (isset($_POST['submit'])) {
 <body>
      <div class="container">
           <div class="header">
-               <h1>Form Tambah Data</h1>
+               <h1>Form Ubah Data</h1>
           </div>
           <div class="body">
                <form action="" method="post">
                     <div class="">
+                         <label for="id">id</label>
+                         <input type="text" name="id" id="id" value="<?= $mhs['id']; ?>">
+                    </div>
+                    <div class="">
                          <label for="nrp">nrp</label>
-                         <input type="text" name="nrp" id="nrp">
+                         <input type="text" name="nrp" id="nrp" value="<?= $mhs['nrp']; ?>">
                     </div>
                     <div class="">
                          <label for="nama">nama</label>
-                         <input type="text" name="nama" id="nama">
+                         <input type="text" name="nama" id="nama" value="<?= $mhs['nama']; ?>">
                     </div>
                     <div class="">
                          <label for="email">email</label>
-                         <input type="text" name="email" id="email">
+                         <input type="text" name="email" id="email" value="<?= $mhs['email']; ?>">
                     </div>
                     <div class="">
                          <label for="jurusan">jurusan</label>
-                         <input type="text" name="jurusan" id="jurusan">
+                         <input type="text" name="jurusan" id="jurusan" value="<?= $mhs['jurusan']; ?>">
                     </div>
                     <div class="">
                          <label for="gambar">gambar</label>
-                         <input type="text" name="gambar" id="gambar">
+                         <input type="text" name="gambar" id="gambar" value="<?= $mhs['gambar']; ?>">
                     </div>
                     <button type="submit" name="submit">simpan</button>
                </form>

@@ -3,6 +3,7 @@ require_once 'function.php';
 
 $mahasiswa = query("SELECT * FROM mahasiswa");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +14,18 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 </head>
 
 <body>
-     <a href="tambah.php">tambah.php</a>
-     <table border="1" cellpadding="10" cellspacing="0">
+     <a href="tambah.php">
+          <h2>Tambah data</h2>
+     </a>
+     <table cellpadding="10" cellspacing="0" border="1">
           <tr>
-               <td>NO</td>
+               <td>No</td>
                <td>NRP</td>
                <td>Nama</td>
                <td>Email</td>
                <td>Jurusan</td>
                <td>Gambar</td>
-               <td>aksi</td>
+               <td>Aksi</td>
           </tr>
           <?php $no = 1;
           foreach ($mahasiswa as $row) : ?>
@@ -34,11 +37,11 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                     <td><?= $row['jurusan']; ?></td>
                     <td><?= $row['gambar']; ?></td>
                     <td>
-                         <a href="ubah.php?id=<?= $row['id']; ?>">ubah</a>
-                         <a href="hapus.php?id=<?= $row['id']; ?>">hapus</a>
+                         <a href="update.php?id=<?= $row['id']; ?>">update</a>
+                         <a href="hapus.php?id=<?= $row['id']; ?>">delete</a>
                     </td>
                </tr>
-          <?php endforeach;  ?>
+          <?php endforeach; ?>
      </table>
 </body>
 
