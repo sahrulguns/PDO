@@ -58,41 +58,35 @@ function ubah($data)
      return mysqli_affected_rows($conn);
 }
 
-
 function registrasi($data)
 {
      global $conn;
-
      $username = $data['username'];
      $password = $data['password'];
      $password2 = $data['password2'];
 
-     // cek username
-     $query = mysqli_query($conn, "SELECT username FROM user WHERE username='$username'");
+     $cek_username = mysqli_query($conn, "SELECT * FROM user WHERE username='$username'");
 
-     if (mysqli_fetch_assoc($query)) {
+     if (mysqli_fetch_assoc($cek_username)) {
           echo "
                <script>
-                    alert('username sudah ada');
+                    alert('username sudah ada!');
                </script>
           ";
           return false;
      }
-     // cek konfirmasu password
+
+     // konfirmasi pasword
      if ($password !== $password2) {
           echo "
                <script>
-                    alert('masukan konfirmasi password yag benar!');
+                    alert('password tidak sama');
                </script>
           ";
           return false;
      }
-
      $password = password_hash($password, PASSWORD_DEFAULT);
-
-     // simpan data
-     mysqli_query($conn, "INSERT INTO user 
-               VALUES('', '$username', '$password')");
+     mysqli_query($conn, "INSERT INTO user VALUES('', '$username', '$password')");
 
      return mysqli_affected_rows($conn);
 }

@@ -4,31 +4,34 @@ require_once 'function.php';
 if (isset($_POST['submit'])) {
      if (registrasi($_POST) > 0) {
           echo "
-                    <script>
-                         alert('registrasi berhasil!');
-                    </script>
-               ";
+               <script>
+                    alert('registrasi berhasil!');
+                   
+               </script>
+          ";
      } else {
           echo "
-               <script>
-                    alert('registrasi gagal!');
-               </script>
-          " . mysqli_error($conn);
+          <script>
+               alert('registrasi gagal!');
+          </script>
+     " . mysqli_error($conn);
      }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
+     <title>Registrasi</title>
 </head>
 
 <body>
-     <h1>Form Registrasi</h1>
      <div class="container">
+          <h1>Form Registrasi</h1>
           <form action="" method="post">
                <div class="">
                     <label for="username">username</label>
@@ -42,9 +45,7 @@ if (isset($_POST['submit'])) {
                     <label for="password2">konfirmasi password</label>
                     <input type="text" name="password2" id="password2">
                </div>
-
                <button type="submit" name="submit">Simpan</button>
-
           </form>
      </div>
 </body>
