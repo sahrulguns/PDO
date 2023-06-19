@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if (isset($_SESSION['login'])) {
+     header("location:index.php");
+     exit;
+}
+
 require_once 'function.php';
 
 if (isset($_POST['login'])) {
@@ -8,8 +15,13 @@ if (isset($_POST['login'])) {
      $result = mysqli_query($conn, "SELECT * FROM user WHERE username='$username'");
 
      if (mysqli_num_rows($result) ===  1) {
+
+          // buat session
+          $_SESSION['login'] = true;
           header('location:index.php');
           exit;
+     } else {
+          echo "password/username salah!";
      }
 }
 
